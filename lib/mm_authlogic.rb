@@ -1,0 +1,6 @@
+require 'mongo_mapper/plugins/custom_scope'
+require 'mongo_mapper/plugins/authlogic'
+require 'mm_authlogic/ar_trickery'
+require 'mm_authlogic/load_authlogic'
+require 'mm_authlogic/al_fixes'
+require 'mm_authlogic/new_base'

@@ -1,0 +1,40 @@
+= Description
+
+A MongoMapper plugin that will allow authlogic to be used as the
+authentication system.
+
+= Usage
+
+    class User
+      include MongoMapper::Document
+
+      key :email,             String
+      key :crypted_password,  String
+      key :password_salt,     String
+      key :persistence_token, String
+
+      plugin MongoMapper::Plugins::AuthLogic
+      acts_as_authentic
+    end
+
+AuthLogic can automatically maintain a number of fields for you. The
+above example is only a small subset. See the AuthLogic documentation
+for all fields it can maintain. It does this by detecting the fields
+defined while initializing. This means that you must define the keys
+BEFORE you install the plugin on your model and call acts_as_authentic.
+
+= Dependencies
+
+Do not put Authlogic directly in your Gemfile. It will automatically
+require 'authlogic.rb' which will cause AuthLogic to try to load against
+ActiveRecord. Instead just depend on this gem. This gem makes the
+dependency on AuthLogic and loads it specially so as it can work without
+ActiveRecord.
+
+= CREDIT
+
+* Developed by Eric Anderson (http://pixelwareinc.com)
+* Enhanced via projects developed under
+  Southern Web Group (http://southernwebgroup.com)
+* Largly based on the code by gigamo (https://gist.github.com/444888)
+
