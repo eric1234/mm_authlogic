@@ -13,3 +13,15 @@ module Authlogic::ActsAsAuthentic::Login::Config
   end
 
 end
+
+module Authlogic::Session::UnauthorizedRecord
+
+  def credentials=(value)
+    super
+    values = value.is_a?(Array) ? value : [value]
+    self.unauthorized_record = values.first if
+      values.first.class < ::ActiveRecord::Base ||
+      values.first.is_a?(MongoMapper::Document)
+  end
+
+end
