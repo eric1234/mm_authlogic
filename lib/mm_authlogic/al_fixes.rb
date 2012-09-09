@@ -25,3 +25,20 @@ module Authlogic::Session::UnauthorizedRecord
   end
 
 end
+
+module Authlogic::ActsAsAuthentic::PerishableToken::Methods::ClassMethods
+
+  # Override to use where query accoriding to the MongoMapper way
+  def find_using_perishable_token(token, age = self.perishable_token_valid_for)
+    return if token.blank?
+    age = age.to_i
+
+    conditions = {:perishable_token => token}
+
+    conditions[:updated_at.gt] = age.seconds.ago if
+      column_names.include?("updated_at") && age > 0
+
+    where(conditions).first
+  end
+
+end
