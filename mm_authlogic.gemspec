@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.rdoc_options << '--main' << 'README.rdoc'
   s.summary = 'Use AuthLogic on MongoMapper models'
   s.description = <<-DESCRIPTION
-    Use AuthLogic on MongoMapper models just like you do on ActiveRecord models
+    Use AuthLogic on MongoMapper models just like you do on
+    ActiveRecord models
   DESCRIPTION
 end

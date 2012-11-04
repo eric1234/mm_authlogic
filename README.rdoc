@@ -31,6 +31,16 @@ ActiveRecord. Instead just depend on this gem. This gem makes the
 dependency on AuthLogic and loads it specially so as it can work without
 ActiveRecord.
 
+= Future
+
+Eventually I would like this library to either be less hackish or
+non-existant. There are a few areas we could enhance AuthLogic to
+make it more MongoMapper friendly. Possibly so friendly no exta plugin
+is needed. My main first goal is to have working integration between
+AuthLogic and MongoMapper. Once I am fairly confident of that (been
+used on a few apps) I will start getting rid of the hacks by submitting
+patches to AuthLogic.
+
 = CREDIT
 
 * Developed by Eric Anderson (http://pixelwareinc.com)
