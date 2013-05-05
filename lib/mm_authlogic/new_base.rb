@@ -35,10 +35,14 @@ module MMAuthLogic
       # See the various sub modules for the configuration they provide.
       def acts_as_authentic(unsupported_options = nil, &block)
         # Stop all configuration if the DB is not set up
-        raise StandardError.new("You must establish a database connection before using acts_as_authentic") if !db_setup?
+        return if !db_setup?
 
-        raise ArgumentError.new("You are using the old v1.X.X configuration method for Authlogic. Instead of " +
-          "passing a hash of configuration options to acts_as_authentic, pass a block: acts_as_authentic { |c| c.my_option = my_value }") if !unsupported_options.nil?
+        if !unsupported_options.nil?
+          raise ArgumentError.new(
+            "You are using the old v1.X.X configuration method for Authlogic. Instead of passing a hash of " +
+            "configuration options to acts_as_authentic, pass a block: acts_as_authentic { |c| c.my_option = my_value }"
+          )
+        end
 
         yield self if block_given?
         acts_as_authentic_modules.each { |mod| include mod }

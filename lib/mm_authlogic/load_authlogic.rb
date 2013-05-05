@@ -17,6 +17,7 @@
  "crypto_providers/sha512",
  "crypto_providers/bcrypt",
  "crypto_providers/aes256",
+ "crypto_providers/scrypt",
 
  "authenticates_many/base",
  "authenticates_many/association",
@@ -59,5 +60,4 @@
 ].each {|library| require "authlogic/#{library}"}
 
 require "authlogic/controller_adapters/rails_adapter"   if defined? Rails
-require "authlogic/controller_adapters/merb_adapter"    if defined? Merb
 require "authlogic/controller_adapters/sinatra_adapter" if defined? Sinatra
