@@ -19,9 +19,23 @@ module Authlogic::Session::UnauthorizedRecord
   def credentials=(value)
     super
     values = value.is_a?(Array) ? value : [value]
+    klass = values.first.class
     self.unauthorized_record = values.first if
-      values.first.class < ::ActiveRecord::Base ||
-      values.first.is_a?(MongoMapper::Document)
+      (klass < MongoMapper::Document) ||
+      (defined?(ActiveRecord) && (klass < ::ActiveRecord::Base))
+  end
+
+end
+
+module Authlogic::Session::PriorityRecord
+
+  def credentials=(value)
+    super
+    values = value.is_a?(Array) ? value : [value]
+    klass = values[1].class
+    self.unauthorized_record = values[1] if
+      (klass < MongoMapper::Document) ||
+      (defined?(ActiveRecord) && (klass < ::ActiveRecord::Base))
   end
 
 end
