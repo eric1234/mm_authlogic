@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mm_authlogic (0.0.2)
+    mm_authlogic (0.0.3)
       authlogic
       mongo_mapper
 
